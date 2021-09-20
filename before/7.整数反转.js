@@ -10,14 +10,20 @@
  * @return {number}
  */
 var reverse = function (x) {
-  if (x < 0) {
-    var dim = false;
-    x = -x;
+  let sign = x < 0 ? -1 : 1
+  x = Math.abs(x)
+  // if (x > 2 ** 31 - 1) return 0
+  let res = 0
+  while (x > 0) {
+    res = res * 10 + x % 10
+    x = Math.floor(x / 10)
   }
-  let res = 1;
-  let last = x % 10;
-  while (last !== 0) {
-    last =
-  }
-};
+  return res > 2 ** 31 - 1 ? 0 : res * sign
+}
 // @lc code=end
+
+let x = 1534236469
+
+x = 1563847412
+
+console.log(reverse(x))
