@@ -5,6 +5,7 @@
 var permutation = function (S) {
   let res = [];
 
+
   return res;
 };
 
