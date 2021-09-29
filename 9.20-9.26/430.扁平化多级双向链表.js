@@ -23,6 +23,7 @@ var flatten = function (head) {
       chead.prev = head
 
     } else {
+
       head = head.next
     }
   }
