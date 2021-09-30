@@ -13,12 +13,9 @@ var computeArea = function (ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) {
   /* 容斥定理 */
   let a = (ax2 - ax1) * (ay2 - ay1)
   let b = (bx2 - bx1) * (by2 - by1)
-  let diff = 0
-  if (bx1 < ax2 || by1 < ay2) {
-    diff = (Math.max(ax1, bx1) - Math.min(ax2, bx2)) * (Math.max(ay1, by1) - Math.min(ay2, by2))
-  }
-  return [a, b, diff]
-  return a + b - diff
+  let overlapWidth = Math.min(ax2, bx2) - Math.max(ax1, bx1)
+  let overlapHeight = Math.min(ay2, by2) - Math.max(ay1, by1)
+  return a + b - Math.max(overlapHeight, 0) * Math.max(overlapWidth, 0)
 };
 
 let ax1 = -3,
