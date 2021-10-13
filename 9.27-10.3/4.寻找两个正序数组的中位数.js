@@ -31,6 +31,9 @@ var findMedianSortedArrays = function (nums1, nums2) {
 var findMedianSortedArrays2 = function (nums1, nums2) {
   let len1 = nums1.length
   let len2 = nums2.length
+  for (let i = 0; i < len1 - 1; i++) {
+
+  }
   let m = 0
   let n = 0
   let first = 0
