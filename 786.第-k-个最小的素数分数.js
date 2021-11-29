@@ -11,47 +11,38 @@
  * @return {number[]}
  */
 var kthSmallestPrimeFraction = function (arr, k) {
-  let queue = new PriorityQueue(arr);
-  for (let i = arr.length - 1; i >= 1; i--) {
-    for (let j = 0; j < i; j++) {
-      queue.push([arr[j], arr[i]]);
+  let queue = new PriorityQueue(arr)
+  while (k > 1) {
+    let minNum = queue.pop()
+    let a = minNum[0]
+    let b = minNum[1]
+    if (a + 1 < b) {
+      queue.push([a + 1, b])
     }
+    k--
+    if (queue.size() === 0) return [arr[a], arr[b]]
   }
-  return queue.data[queue.data.length - k]
-};
+  let res = queue.pop()
+  return [arr[res[0]], arr[res[1]]]
+}
 
 class PriorityQueue {
-
   constructor(arr) {
+    this.arr = arr
     this.data = []
     for (let i = 1; i < arr.length; i++) {
-      this.data.push([arr[0], arr[i]])
+      this.data.push([0, i])
     }
   }
-  head() {
-    return this.data[0];
+  size () {
+    return this.data.length
   }
-  tail() {
-    return this.data[this.data.length - 1];
+  push (num) {
+    this.data.push(num)
+    this.data.sort(([a, b], [c, d]) => this.arr[a] * this.arr[d] - this.arr[b] * this.arr[c])
   }
-  compareSize(a, b, flag = false) {
-    return flag ? a[0] * b[1] >= a[1] * b[0] : a[0] * b[1] > a[1] * b[0]
-  }
-  push(num) {
-    if (this.data.length === 0 || this.compareSize(num, this.head())) {
-      this.data.unshift(num);
-      return;
-    }
-    if (this.compareSize(this.tail(), num, true)) {
-      this.data.push(num);
-      return;
-    }
-    for (let i = 1; i < this.data.length; i++) {
-      if (this.compareSize(this.data[i - 1], num, true) && this.compareSize(num, this.data[i])) {
-        this.data.splice(i, 0, num);
-        return;
-      }
-    }
+  pop () {
+    return this.data.pop()
   }
 }
 // @lc code=end
@@ -59,6 +50,7 @@ class PriorityQueue {
 let arr = [1, 2, 3, 5],
   k = 3
 
-// arr = [1, 7], k = 1
+arr = [1, 7], k = 1
+arr = [1, 7, 23, 29, 47], k = 8
 
 console.log(kthSmallestPrimeFraction(arr, k))
