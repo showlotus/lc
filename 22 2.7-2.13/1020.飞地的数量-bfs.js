@@ -21,41 +21,46 @@ var numEnclaves = function (grid) {
     [0, -1],
   ]
 
-  const dfs = (grid, x, y) => {
-    const m = grid.length
-    const n = grid[0].length
-    if (x < 0 || x >= m || y < 0 || y >= n || grid[x][y] === 0 || visited[x][y]) return
-    // console.log(`[${ x }, ${ y }]: ${ grid[x][y] }`)
-    visited[x][y] = true
-    for (let dir of dirs) {
-      dfs(grid, x + dir[0], y + dir[1])
+  const queue = []
+  for (let i = 0; i < m; ++i) {
+    if (grid[i][0] === 1) {
+      visited[i][0] = true
+      queue.push([i, 0])
+    }
+
+    if (grid[i][n - 1] === 1) {
+      visited[i][n - 1] = true
+      queue.push([i, n - 1])
     }
   }
 
-  const edges = (m + n - 2) * 2
-  for (let j = 0; j < edges; j++) {
-    let x = 0
-    let y = 0
-    if (j < n) {
-      // 第一行
-      y = j
-    } else {
-      if (j <= m + n - 2) {
-        // 最后一列
-        x = j - n + 1
-        y = n - 1
-      } else if (j <= m + n * 2 - 3) {
-        // 最后一行
-        x = m - 1
-        y = m + 2 * n - j - 3
-      } else {
-        // 第一列
-        x = edges - j
-        y = 0
-      }
+  for (let j = 1; j < n - 1; ++j) {
+    if (grid[0][j] === 1) {
+      visited[0][j] = true
+      queue.push([0, j])
     }
-    if (grid[x][y] === 1) {
-      dfs(grid, x, y)
+    if (grid[m - 1][j] === 1) {
+      visited[m - 1][j] = true
+      queue.push([m - 1, j])
+    }
+  }
+
+  while (queue.length) {
+    const [currRow, currCol] = queue.shift()
+    for (let dir of dirs) {
+      let nextRow = currRow + dir[0]
+      let nextCol = currCol + dir[1]
+      if (
+        nextRow >= 0 &&
+        nextRow < m &&
+        nextCol >= 0 &&
+        nextCol < n &&
+        grid[nextRow][nextCol] === 1 &&
+        !visited[nextRow][nextCol]
+      ) {
+        visited[nextRow][nextCol] = true
+        queue.push([nextRow, nextCol])
+      }
     }
   }
 
