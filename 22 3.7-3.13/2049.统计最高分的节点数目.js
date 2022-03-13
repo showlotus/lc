@@ -13,12 +13,12 @@ var countHighestScoreNodes = function (parents) {
   let n = parents.length
   let children = new Array(n).fill(0).map(() => new Array())
 
-  for (let [i, v = parents[i]] in parents) {
+  for (let i = 0; i < n; i++) {
+    let v = parents[i]
     if (v !== -1) {
-      children[v].push(+i)
+      children[v].push(i)
     }
   }
-
   let maxScore = 0
   let cnt = 0
 
@@ -49,5 +49,6 @@ var countHighestScoreNodes = function (parents) {
 }
 // @lc code=end
 var parents = [-1, 2, 0, 2, 0]
+parents = [-1, 6, 9, 2, 0, 6, 0, 4, 4, 11, 12, 1, 7]
 
 console.log(countHighestScoreNodes(parents))
