@@ -18,7 +18,7 @@ module.exports.Array2ListNode = function (arr) {
 
 module.exports.ListNode2Array = function (listnode) {
   let res = []
-  while (listnode) {
+  while (listnode.next) {
     res.push(listnode.val)
     listnode = listnode.next
   }
