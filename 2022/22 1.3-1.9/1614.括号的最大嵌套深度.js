@@ -10,23 +10,23 @@
  * @return {number}
  */
 var maxDepth = function (s) {
-  let stack = []
-  let max = 0
+  let stack = [];
+  let max = 0;
   for (let t of s) {
     if (t === "(") {
-      stack.push(t)
+      stack.push(t);
     }
     if (t === ")") {
-      max = Math.max(stack.length, max)
-      stack.pop()
+      max = Math.max(stack.length, max);
+      stack.pop();
     }
   }
-  return max
-}
+  return max;
+};
 // @lc code=end
 
-var s = "1+(2*3)/(2-1)"
-s = "(1)+((2))+(((3)))"
-s = "1"
-s = "(1+(2*3)+((8)/4))+1"
-console.log(maxDepth(s))
+var s = "1+(2*3)/(2-1)";
+s = "(1)+((2))+(((3)))";
+s = "1";
+s = "(1+(2*3)+((8)/4))+1";
+console.log(maxDepth(s));

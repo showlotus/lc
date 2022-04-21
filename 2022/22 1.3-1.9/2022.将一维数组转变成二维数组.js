@@ -12,27 +12,27 @@
  * @return {number[][]}
  */
 var construct2DArray = function (original, m, n) {
-  let oriLen = original.length
-  if (oriLen !== m * n) return []
-  let res = new Array(m)
-  let currIndex = 0
+  let oriLen = original.length;
+  if (oriLen !== m * n) return [];
+  let res = new Array(m);
+  let currIndex = 0;
   for (let i = 0; i < m; i++) {
-    res[i] = []
+    res[i] = [];
     for (let j = 0; j < n; j++) {
-      res[i][j] = original[currIndex]
-      currIndex++
+      res[i][j] = original[currIndex];
+      currIndex++;
     }
   }
-  return res
-}
+  return res;
+};
 // @lc code=end
 
 var original = [1, 2, 3],
   m = 1,
-  n = 3
+  n = 3;
 
-;(original = [3]), (m = 1), (n = 2)
-;(original = [1, 2, 3, 4]), (m = 2), (n = 2)
-;(original = [1, 2]), (m = 1), (n = 1)
+(original = [3]), (m = 1), (n = 2);
+(original = [1, 2, 3, 4]), (m = 2), (n = 2);
+(original = [1, 2]), (m = 1), (n = 1);
 
-console.log(construct2DArray(original, m, n))
+console.log(construct2DArray(original, m, n));

@@ -11,23 +11,23 @@
  */
 var simplifyPath = function (path) {
   /* 去除多余的/和. */
-  let path1 = path.replace(/\/{2,}/g, "/").replace(/\/+$/, "")
-  let dirNameList = path1.split("/")
-  let res = []
+  let path1 = path.replace(/\/{2,}/g, "/").replace(/\/+$/, "");
+  let dirNameList = path1.split("/");
+  let res = [];
   dirNameList.forEach(dir => {
     if (dir === "..") {
-      res.pop()
+      res.pop();
     } else if (!["", "."].includes(dir)) {
-      res.push(dir)
+      res.push(dir);
     }
-  })
-  return "/" + res.join("/")
-}
+  });
+  return "/" + res.join("/");
+};
 // @lc code=end
 
-var path = "/home/"
+var path = "/home/";
 // path = "/home///f//../oo/../../.."
-path = "/home///f//../oo/.."
-path = "/../"
-path = "/a/./b/../../c/"
-console.log(simplifyPath(path))
+path = "/home///f//../oo/..";
+path = "/../";
+path = "/a/./b/../../c/";
+console.log(simplifyPath(path));

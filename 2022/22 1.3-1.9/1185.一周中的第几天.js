@@ -11,16 +11,16 @@
  * @param {number} year
  * @return {string}
  */
-const WeekList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+const WeekList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var dayOfTheWeek = function (day, month, year) {
-  let weekDay = new Date(year, month - 1, day).getDay()
-  return WeekList[weekDay]
-}
+  let weekDay = new Date(year, month - 1, day).getDay();
+  return WeekList[weekDay];
+};
 // @lc code=end
 var day = 31,
   month = 8,
-  year = 2019
+  year = 2019;
 
 // ;(day = 3), (month = 1), (year = 2022)
 
-console.log(dayOfTheWeek(day, month, year))
+console.log(dayOfTheWeek(day, month, year));

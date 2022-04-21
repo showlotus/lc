@@ -10,23 +10,23 @@
  * @return {number}
  */
 var maxArea = function (height) {
-  let max = 0
-  let left = 0
-  let right = height.length - 1
+  let max = 0;
+  let left = 0;
+  let right = height.length - 1;
   while (left < right) {
-    max = Math.max(max, Math.min(height[left], height[right]) * (right - left))
+    max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
     if (height[left] <= height[right]) {
-      left++
+      left++;
     } else {
-      right--
+      right--;
     }
   }
-  return max
-}
+  return max;
+};
 // @lc code=end
 
-var height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+var height = [1, 8, 6, 2, 5, 4, 8, 3, 7];
 
 // height = [1, 0]
 
-console.log(maxArea(height))
+console.log(maxArea(height));
