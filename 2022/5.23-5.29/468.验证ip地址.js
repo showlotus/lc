@@ -11,11 +11,11 @@
  */
 var validIPAddress = function (queryIP) {
   const IPv4Range = "(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]\\d|[0-9])";
-  const patternIPv4 = new RegExp(`\^(${IPv4Range}\\.){3}${IPv4Range}\$`);
+  const patternIPv4 = new RegExp(`^(${IPv4Range}\\.){3}${IPv4Range}$`);
   if (queryIP.match(patternIPv4)) return "IPv4";
 
   const IPv6Range = "[0-9a-fA-F]{1,4}";
-  const patternIPv6 = new RegExp(`\^(${IPv6Range}:){7}${IPv6Range}\$`);
+  const patternIPv6 = new RegExp(`^(${IPv6Range}:){7}${IPv6Range}$`);
   if (queryIP.match(patternIPv6)) return "IPv6";
 
   return "Neither";
