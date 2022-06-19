@@ -1,10 +1,10 @@
-function TreeNode (val, left, right) {
+function TreeNode(val, left, right) {
   this.val = val === undefined ? 0 : val
   this.left = left === undefined ? null : left
   this.right = right === undefined ? null : right
 }
 
-function Array2BinaryTree (arr) {
+function Array2BinaryTree(arr) {
   if (!arr.length) return null
   const arrClone = arr.slice(0)
   const len = arrClone.length
@@ -16,10 +16,10 @@ function Array2BinaryTree (arr) {
   return arrClone[0]
 }
 
-function Array2Tree (arr) {
+function Array2Tree(arr) {
   const arrClone = JSON.parse(JSON.stringify(arr))
   const map = new Map()
-  const defaultRoot = { id: -1, parentId: null, val: -1, label: 'root', }
+  const defaultRoot = { id: -1, parentId: null, val: -1, label: "root" }
   let root = null
   arrClone.forEach(v => {
     v.children = []
@@ -49,7 +49,7 @@ function Array2Tree (arr) {
   return root
 }
 
-function Tree2Array (tree) {
+function Tree2Array(tree) {
   const arr = []
   const stack = [tree]
   while (stack.length) {
@@ -65,23 +65,23 @@ function Tree2Array (tree) {
   return arr.sort((a, b) => a.id - b.id)
 }
 
-function randomData (n = 20) {
+function randomData(n = 20) {
   return new Array(n).fill(0).map((v, i) => {
     return {
       id: i,
-      parentId: Math.random() * 30 | 0 + i + 1,
+      parentId: (Math.random() * 30) | (0 + i + 1),
       val: i + 1,
       label: String(i + 1).repeat(i)
     }
   })
 }
 
-const arr = randomData()
+// const arr = randomData()
 
 // console.log(arr)
-const tree = Array2Tree(arr)
+// const tree = Array2Tree(arr)
 
-console.log(Tree2Array(tree))
+// console.log(Tree2Array(tree))
 // console.log(Array2Tree(arr))
 
 // let arr = [1, 2, 3, 4, 5, 6, null, 1];
