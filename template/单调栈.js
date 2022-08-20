@@ -16,5 +16,27 @@ const findNextBiggerNumber = function (arr) {
   return res
 }
 
+/**
+ * @description: 找到每个数组元素左侧和右侧第一个更大的元素的索引
+ * @param {number[]} arr
+ */
+const findPrevAndNextBiggerNumber = function (nums) {
+  const n = nums.length
+  const left = new Array(n).fill(-1)
+  const right = new Array(n).fill(-1)
+  const stack = []
+  for (let i = 0; i < n; i++) {
+    while (stack.length && nums[i] > nums[stack[stack.length - 1]]) {
+      right[stack.pop()] = i
+    }
+    if (stack.length) {
+      left[i] = stack[stack.length - 1]
+    }
+    stack.push(i)
+  }
+  return left.map((v, i) => [v, right[i]])
+}
+
 let arr = [2, 3, 4, 1, 5]
 console.log(findNextBiggerNumber(arr))
+console.log(findPrevAndNextBiggerNumber(arr))
