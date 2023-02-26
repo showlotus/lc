@@ -31,22 +31,13 @@ var waysToMakeFair = function (nums) {
 
   let res = 0
   for (let i = 0; i < n; i++) {
+    if (preOdd + sufEven === preEven + sufOdd) {
+      res++
+    }
     if (i % 2 === 0) {
-      // i 是偶索引，此时两边：
-      // 奇索引之和 oddSum = preOdd + sufEven
-      // 偶索引之和 evenSum = preEven + sufOdd
-      if (preOdd + sufEven === preEven + sufOdd) {
-        res++
-      }
       preEven += nums[i]
       sufOdd -= i + 1 === n ? 0 : nums[i + 1]
     } else {
-      // i 是奇索引，此时两边：
-      // 奇索引之和 oddSum = preOdd + sufOdd
-      // 偶索引之和 evenSum = preEven + sufEven
-      if (preOdd + sufEven === preEven + sufOdd) {
-        res++
-      }
       preOdd += nums[i]
       sufEven -= i + 1 === n ? 0 : nums[i + 1]
     }
@@ -57,8 +48,8 @@ var waysToMakeFair = function (nums) {
 
 let nums = [2, 1, 6, 4]
 
-nums = [1, 1, 1]
 nums = [1, 2, 3]
+nums = [1, 1, 1]
 
 const res = waysToMakeFair(nums)
 console.log(res)
