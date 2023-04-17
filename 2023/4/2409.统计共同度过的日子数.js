@@ -18,30 +18,32 @@ var countDaysTogether = function (
   arriveBob,
   leaveBob
 ) {
-  const M = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  // 把日期换算成当前年的第几天
-  const gen = date => {
-    const computeSum = (a, b) => a + b
-    const [m, d] = date.split("-").map(Number)
-    return M.slice(0, m - 1).reduce(computeSum, 0) + d
-  }
-
   const rangeAlice = [arriveAlice, leaveAlice].map(gen)
   const rangeBob = [arriveBob, leaveBob].map(gen)
 
   if (rangeAlice[0] <= rangeBob[1] && rangeBob[0] <= rangeAlice[1]) {
     return (
-      Math.min(
-        rangeBob[1] - rangeAlice[0],
-        rangeAlice[1] - rangeBob[0],
-        rangeAlice[1] - rangeAlice[0],
-        rangeBob[1] - rangeBob[0]
-      ) + 1
+      Math.min(rangeAlice[1], rangeBob[1]) -
+      Math.max(rangeAlice[0], rangeBob[0]) +
+      1
     )
   } else {
     return 0
   }
 }
+
+// 把日期换算成当前年的第几天
+const gen = (function () {
+  const M = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  const preSum = new Array(13).fill(0)
+  for (let i = 0; i < 12; i++) {
+    preSum[i + 1] = preSum[i] + M[i]
+  }
+  return function (date) {
+    const [m, d] = date.split("-").map(Number)
+    return preSum[m - 1] + d
+  }
+})()
 
 // @lc code=end
 let arriveAlice = "08-15",
@@ -59,10 +61,10 @@ let arriveAlice = "08-15",
 // arriveBob = "06-19"
 // leaveBob = "10-20"
 
-arriveAlice = "09-01"
-leaveAlice = "10-19"
-arriveBob = "01-19"
-leaveBob = "10-19"
+// arriveAlice = "09-01"
+// leaveAlice = "10-19"
+// arriveBob = "01-19"
+// leaveBob = "10-19"
 
 const res = countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob)
 console.log(res)
