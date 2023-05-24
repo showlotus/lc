@@ -15,6 +15,39 @@ function Array2BinaryTree(arr, index = 0) {
   return node
 }
 
+/**
+ * 数组转二叉树
+ * @param {number[]} arr
+ * @returns
+ */
+function Array2BinaryTree2(arr) {
+  if (!arr.length) {
+    return null
+  }
+
+  const root = new TreeNode(arr[0])
+  const queue = [root]
+  let isLeft = true
+  for (let i = 1; i < arr.length; i++) {
+    const node = queue[0]
+    if (isLeft) {
+      if (arr[i] !== null) {
+        node.left = new TreeNode(arr[i])
+        queue.push(node.left)
+      }
+      isLeft = false
+    } else {
+      if (arr[i] !== null) {
+        node.right = new TreeNode(arr[i])
+        queue.push(node.right)
+      }
+      queue.shift()
+      isLeft = true
+    }
+  }
+  return root
+}
+
 function Array2Tree(arr) {
   const arrClone = JSON.parse(JSON.stringify(arr))
   const map = new Map()
