@@ -122,4 +122,4 @@ arr = [1, 2, 3, 4, null, 5, 6, null, null, 7]
 
 // console.log(Array2BinaryTree(arr))
 
-module.exports.Array2BinaryTree = Array2BinaryTree
+module.exports.Array2BinaryTree = Array2BinaryTree2
