@@ -4,5 +4,14 @@
     "arrowParens": "avoid",
     "semi": false,
     "trailingComma": "none"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+  "dependencies": {
+    "@types/puppeteer": "^7.0.4",
+    "puppeteer": "^10.0.0",
+    "typescript": "^5.2.0-dev.20230611"
   }
 }

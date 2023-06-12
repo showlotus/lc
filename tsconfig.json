@@ -1,0 +1,22 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "ES2015",
+    "lib": [
+      "es6", "dom"
+    ],
+    "types": [
+      "node"
+    ],
+    "outDir": "scripts/dist/",
+    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "declaration": true,
+  },
+  "include": [
+    "scripts/src/**/*",
+  ]
+}
