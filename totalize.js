@@ -1,25 +1,9 @@
-const fs = require("fs");
-const Path = require("path");
+import { globSync } from "glob"
+import chalk from "chalk"
 
-let fileNums = 0;
+const Log = console.log
 
-function readdir(dirPath) {
-  fs.readdir(dirPath, {}, (err, files) => {
-    files.forEach((path) => {
-      const filePath = Path.resolve(dirPath, path);
-      fs.stat(filePath, (err, stat) => {
-        if (stat.isDirectory()) {
-          readdir(filePath);
-        } else if (filePath.endsWith(".js")) {
-          fileNums++;
-        }
-      });
-    });
-  });
-}
+const pattern = "./**/*.js"
+const files = globSync(pattern, { ignore: "node_modules/**" })
 
-readdir("./");
-
-setTimeout(() => {
-  console.log(fileNums);
-}, 2000);
+Log(chalk.bgYellow.bold("Total:"), chalk.greenBright(files.length))

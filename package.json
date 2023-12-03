@@ -1,8 +1,18 @@
 {
+  "scripts": {
+    "count": "node totalize.js",
+    "test": "vitest"
+  },
   "prettier": {
     "tabWidth": 2,
     "arrowParens": "avoid",
     "semi": false,
     "trailingComma": "none"
-  }
+  },
+  "devDependencies": {
+    "chalk": "^5.3.0",
+    "glob": "^10.3.10",
+    "vitest": "^0.34.6"
+  },
+  "type": "module"
 }
